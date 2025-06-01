@@ -33,12 +33,12 @@ import csv
 import os
 import platform
 import sys
+import pathlib
 from pathlib import Path
 import shutil
 
-import pathlib
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+# temp = pathlib.PosixPath
+# pathlib.PosixPath = pathlib.WindowsPath
 
 import torch
 
