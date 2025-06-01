@@ -11,7 +11,7 @@ from detect import run
 import os
 os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
 
-st.set_page_config(page_title="YOLOv5 Skin Burn Detection", page_icon="🧠")
+st.set_page_config(page_title="YOLOv5 Skin Burn Detection", page_icon="🔥")
 
 # --- Fungsi untuk memuat CSS eksternal ---
 def load_css(file_name):
