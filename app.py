@@ -197,10 +197,6 @@ if navbar_choice != st.session_state.selected_page:
     st.session_state.selected_page = navbar_choice
     st.rerun()
 
-
-
-
-
 # --------- Load penanganan.json ---------
 @st.cache_data
 def load_penanganan(path="penanganan.json"):
