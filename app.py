@@ -1,5 +1,7 @@
 import streamlit as st
 from streamlit_community_navigation_bar import st_navbar
+import streamlit.components.v1 as components
+
 import numpy as np
 import cv2
 import tempfile
@@ -11,7 +13,164 @@ from detect import run
 import os
 os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
 
-st.set_page_config(page_title="YOLOv5 Skin Burn Detection", page_icon="🔥")
+st.set_page_config(page_title="YOLOv5 Skin Burn Detection", page_icon="🔥", layout ="centered")
+
+particles_js = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particles.js</title>
+  <style>
+  #particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Send the animation to the back */
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+    color: white;
+  }
+  .text{
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+</style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="content">
+    <h1 class="text">
+    Deteksi Luka Bakar 
+    </h1>
+        <p class="text">Aplikasi ini membantu Anda mendeteksi tingkat luka bakar kulit menggunakan YOLOv5.</p>
+        <p class="text">Upload gambar kulitmu dan Deteksi tingkat luka bakarnya secara otomatis.</p>
+    <!-- Placeholder for Streamlit content -->
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 300,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.2,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 2,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 100,
+          "color": "#ffffff",
+          "opacity": 0.22,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 0.2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": true,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 100,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 2,
+            "duration": 2,
+            "opacity": 0.5,
+            "speed": 1
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 2
+          },
+          "remove": {
+            "particles_nb": 3
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
+"""
+
+
+
 
 # --- Fungsi untuk memuat CSS eksternal ---
 def load_css(file_name):
@@ -101,12 +260,9 @@ def run_detection(file):
 
 
 if st.session_state['selected_page'] == "Beranda":
+    components.html(particles_js,  height=200)
     load_css("style.css")
-    st.markdown('<div class="hero">\
-        <h1>Deteksi Luka Bakar</h1>\
-        <p>Aplikasi ini membantu Anda mendeteksi tingkat luka bakar kulit menggunakan YOLOv5.</p>\
-        <p>Unggah gambar di halaman <b>Deteksi</b> untuk memulai.</p>\
-        </div>', unsafe_allow_html=True)
+    
 
     st.markdown("---")
     st.subheader("Informasi Derajat Luka Bakar")
@@ -130,12 +286,9 @@ if st.session_state['selected_page'] == "Beranda":
     st.markdown("---")
     
 elif st.session_state['selected_page'] == "Deteksi":
+    components.html(particles_js,  height=200)
     load_css("style.css")
-    st.markdown('<div class="hero">\
-    <h1>Deteksi Luka Bakar</h1>\
-    <p>Aplikasi ini membantu Anda mendeteksi tingkat luka bakar kulit menggunakan YOLOv5.</p>\
-    <p>Upload gambar kulitmu dan <b>Deteksi</b> tingkat luka bakarnya secara otomatis.</p>\
-    </div>', unsafe_allow_html=True)
+
     st.markdown("")
 
     if 'detection_results' not in st.session_state:
@@ -188,3 +341,4 @@ elif st.session_state['selected_page'] == "Deteksi":
         st.info("Silakan upload gambar dan klik tombol 'Jalankan Deteksi' untuk memulai.")
 else:
     st.error("Page tidak ditemukan. Kembali ke Home.")
+
