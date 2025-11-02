@@ -1,71 +1,45 @@
+/* Background utama putih */
+.stApp {
+    background-color: #ffffff !important;
+}
+
+/* Teks default hitam biar kontras */
+html, body, [class*="css"]  {
+    color: #111111 !important;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Judul / header merah */
+h1, h2, h3, h4, h5, h6 {
+    color: #b91c1c !important; /* merah tua */
+    font-weight: bold;
+}
+
+/* Tombol custom (nuansa merah) */
 .stButton>button {
-    /* background-color: #1f77b4; */
-    color: black;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: 600;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease;
-    width: 100%;
-    padding: 12px 0;
-    font-size: 16px;
-    font-weight: 600;
+    background-color: #dc2626; /* merah */
+    color: #ffffff;
+    font-weight: bold;
     border-radius: 8px;
-    background-color: #fff;
+    padding: 0.6em 1.2em;
     border: none;
+    transition: background-color 0.3s ease;
 }
 
 .stButton>button:hover {
-    cursor: pointer;
-    background-color: #a2c4c9;
-    color: black;
-
+    background-color: #b91c1c; /* merah lebih gelap */
 }
 
-
-/* General Reset */
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: transparent;
+/* Expander (accordion) styling */
+.streamlit-expanderHeader {
+    background-color: #fee2e2; /* merah muda */
+    color: #b91c1c;
+    font-weight: 600;
+    border-radius: 6px;
 }
 
-/* Hero */
-.hero {
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    padding: 2rem;
-    border-radius: 15px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-/* Card Container */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-}
-
-.card {
-    flex: 1 1 calc(45%);
-    background-color: white;
-    padding: 1.5rem;
+/* Box hasil deteksi */
+.block-container {
     border-radius: 12px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    padding: 1rem;
 }
-
-.card:hover {
-    transform: scale(1.03);
-}
-
-.card h4 {
-    margin-bottom: 0.5rem;
-    color: #e53935;
-}
-
-
-
-
