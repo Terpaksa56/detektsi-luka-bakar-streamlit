@@ -37,8 +37,8 @@ import pathlib
 from pathlib import Path
 import shutil
 
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+# temp = pathlib.PosixPath
+# pathlib.PosixPath = pathlib.WindowsPath
 
 import torch
 
